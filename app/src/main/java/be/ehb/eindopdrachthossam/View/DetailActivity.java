@@ -1,9 +1,6 @@
 package be.ehb.eindopdrachthossam.View;
-import be.ehb.eindopdrachthossam.Models.CarDAO;
-import be.ehb.eindopdrachthossam.Models.CarDataBass;
-import be.ehb.eindopdrachthossam.R;
-import be.ehb.eindopdrachthossam.Models.Car;
 
+import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -15,14 +12,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.InputStream;
 import java.lang.ref.WeakReference;
-import be.ehb.eindopdrachthossam.View.CarViewModel;
+
+import be.ehb.eindopdrachthossam.R;
 
 public class DetailActivity extends AppCompatActivity {
 
-    /*CarDataBass carDatabase = CarDataBass.getInstance(getApplicationContext());
-    CarDAO carDAO = carDatabase.getCarDAO();*/
-    private CarViewModel carViewModel;
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +45,7 @@ public class DetailActivity extends AppCompatActivity {
 
     // asyncTask para cargar imágenes en segundo plano
     private static class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
-        private WeakReference<ImageView> imageViewReference;
+        private final WeakReference<ImageView> imageViewReference;
 
         DownloadImageTask(ImageView imageView) {
             imageViewReference = new WeakReference<>(imageView);
@@ -77,14 +73,7 @@ public class DetailActivity extends AppCompatActivity {
             }
         }
 
-        /*private void editCar(Car car) {
-            // Implementa la lógica para cargar la pantalla de edición con los detalles del coche
-
-            // Después de que el usuario realiza las ediciones y guarda los cambios
-            carViewModel.updateCar(car);
-
-            // Actualiza la interfaz de usuario (recargando la lista, etc.)
-        }*/
     }
+
 }
 

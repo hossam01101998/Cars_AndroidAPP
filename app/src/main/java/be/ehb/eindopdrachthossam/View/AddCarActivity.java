@@ -93,6 +93,9 @@ public class AddCarActivity extends AppCompatActivity {
             resultIntent.putExtra(EXTRA_CAR, newCar);
             setResult(RESULT_OK, resultIntent);
 
+            Toast.makeText(AddCarActivity.this, "Car is added succesfully", Toast.LENGTH_SHORT).show();
+
+
             finish();
 
         } catch (NumberFormatException e) {

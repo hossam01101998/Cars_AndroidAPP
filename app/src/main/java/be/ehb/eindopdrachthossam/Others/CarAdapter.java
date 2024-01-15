@@ -118,4 +118,5 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.CarHolder>{
             }
         }
     }
+
 }

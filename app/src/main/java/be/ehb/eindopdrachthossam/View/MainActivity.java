@@ -1,23 +1,16 @@
 package be.ehb.eindopdrachthossam.View;
-import static be.ehb.eindopdrachthossam.View.AddCarActivity.EXTRA_CAR;
-import static be.ehb.eindopdrachthossam.View.CarViewModel.insertCar;
 
+import static be.ehb.eindopdrachthossam.View.CarViewModel.insertCar;
 import be.ehb.eindopdrachthossam.Models.Car;
 import be.ehb.eindopdrachthossam.Models.CarDAO;
-import be.ehb.eindopdrachthossam.Models.CarDataBass;
 import be.ehb.eindopdrachthossam.R;
 import be.ehb.eindopdrachthossam.Others.CarAdapter;
 import be.ehb.eindopdrachthossam.Others.VolleySingleton;
-import be.ehb.eindopdrachthossam.View.CarViewModel;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.room.Room;
-
-import android.app.Application;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -26,20 +19,15 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.Volley;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.gson.Gson;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,18 +41,6 @@ public class MainActivity extends AppCompatActivity {
     private CarDAO carDAO;
     private CarViewModel carViewModel;
     private LiveData<List<Car>> allCars;
-
-
-
-
-
-
-    /*CarDataBass carDatabase = CarDataBass.getInstance(getApplicationContext());
-    CarDAO carDAO = carDatabase.getCarDAO();*/
-
-    /*Car newCar = new Car("Car Name", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTutU2xxmImYqoo3f3_l6Yti3Yg3E7o2B2Mowz7YeQ8Og&s",
-            "Overview", 4.5);*/
-
     private EditText editTextSearch;
 
     @Override
@@ -136,9 +112,7 @@ public class MainActivity extends AppCompatActivity {
     private void openAddCarActivity() {
         Intent intent = new Intent(this, AddCarActivity.class);
         startActivity(intent);
-
     }
-
 
     //fetches the cars from the json file API
     private void fetchCars() {
@@ -198,8 +172,5 @@ public class MainActivity extends AppCompatActivity {
             recyclerView.setAdapter(adapter);
         });
     }
-
-
-
 }
 
