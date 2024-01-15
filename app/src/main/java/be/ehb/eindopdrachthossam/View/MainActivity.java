@@ -1,4 +1,5 @@
 package be.ehb.eindopdrachthossam.View;
+import static be.ehb.eindopdrachthossam.View.AddCarActivity.EXTRA_CAR;
 import static be.ehb.eindopdrachthossam.View.CarViewModel.insertCar;
 
 import be.ehb.eindopdrachthossam.Models.Car;
@@ -17,10 +18,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
 import android.app.Application;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -30,6 +33,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.gson.Gson;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -48,6 +53,9 @@ public class MainActivity extends AppCompatActivity {
     private CarDAO carDAO;
     private CarViewModel carViewModel;
     private LiveData<List<Car>> allCars;
+
+
+
 
 
 
@@ -114,6 +122,20 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //boton de añadir abajo
+        FloatingActionButton fabAddCar = findViewById(R.id.fabAddCar);
+        fabAddCar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // lógica para manejar el clic del botón flotante "Añadir Coche"
+                openAddCarActivity();
+            }
+        });
+
+    }
+    private void openAddCarActivity() {
+        Intent intent = new Intent(this, AddCarActivity.class);
+        startActivity(intent);
 
     }
 
@@ -177,45 +199,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+
+
 }
 
-
-
-
-
-
-
-
-    /* TextView data;
-    String url;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        data = findViewById(R.id.data);
-       // url = "https://worldtimeapi.org/api/timezone/Europe/Brussels";
-        url = "https://dog.ceo/api/breeds/image/random";
-
-
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response){
-                try {
-                    String datetime = response.getString("datetime");
-                    data.setText(datetime);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        }, new Response.ErrorListener(){
-            @Override
-            public void onErrorResponse(VolleyError error){
-
-            }
-        });
-
-        Volley.newRequestQueue(this).add(request);
-
-    }*/
